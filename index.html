@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alya Batrisya | Student Bento Grid Landing Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for Clean, Scientific, and Modern Color Palette (Rule 4) */
+        :root {
+            --color-background: #F7F7F7; /* Soft Grey/Near-White */
+            --color-card-bg: #FFFFFF; /* White */
+            --color-text-primary: #1F2937; /* Dark Grey */
+            --color-text-secondary: #6B7280; /* Medium Grey */
+            --color-accent: #0A3D62; /* DEEP OCEAN BLUE (UMT Theme) */
+            --color-accent-light: #E6F0F6; /* Very light accent background */
+            --color-border: #E5E7EB; /* Light Grey Border */
+            --border-radius-base: 12px;
+            --spacing-unit: 16px;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            margin: 0;
+            padding: var(--spacing-unit);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Container for Centering and Max Width */
+        .container {
+            width: 100%;
+            max-width: 1200px; /* Standard desktop width */
+            margin: 0 auto;
+        }
+
+        /* Bento Grid Layout (Rule 2: Grid for Desktop) */
+        .bento-grid {
+            display: grid;
+            /* Defining a 3-column grid for desktop */
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-unit);
+            padding: 0;
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-base);
+            padding: calc(var(--spacing-unit) * 1.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Important for border-radius on content */
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Typography */
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-primary);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 0.4rem;
+            color: var(--color-text-primary);
+        }
+        
+        p {
+            margin-top: 0;
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Card Specific Layouts & Sizing (Desktop Grid Placement) */
+
+        /* Card 1 (Profile): Large box (2x2) */
+        .card-profile {
+            grid-column: span 2;
+            grid-row: span 2;
+            justify-content: space-between;
+        }
+
+        .profile-header {
+            margin-bottom: var(--spacing-unit);
+        }
+        
+        .profile-tagline {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--color-accent);
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .social-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            margin-right: var(--spacing-unit);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--color-accent);
+        }
+        
+        /* Card 6 (Playlist): Wide box at the bottom (3x1) */
+        .card-playlist {
+            grid-column: span 3;
+            /* Adding a subtle accent color for the wide card */
+            background-color: var(--color-accent-light);
+            border-left: 5px solid var(--color-accent);
+        }
+        
+        /* Small Card Content Styling */
+        .card-location, .card-hobby {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        /* Responsive Design (Rule 2: Stacked vertically on mobile) */
+        @media (max-width: 768px) {
+            .bento-grid {
+                /* On mobile, stack all items in a single column */
+                grid-template-columns: 1fr;
+                gap: calc(var(--spacing-unit) * 1.5);
+            }
+
+            /* Resetting desktop grid spans for mobile */
+            .card-profile,
+            .card-playlist {
+                grid-column: span 1;
+                grid-row: auto;
+            }
+            
+            body {
+                padding: var(--spacing-unit);
+            }
+        }
+        
+        /* Icon placeholders */
+        .icon {
+            font-size: 1.1rem;
+            margin-right: 8px;
+            color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header style="padding-bottom: var(--spacing-unit); text-align: center;">
+            <h1 style="font-size: 2rem; font-weight: 800; color: var(--color-text-primary);">
+                Alya's Student Dashboard
+            </h1>
+        </header>
+
+        <main class="bento-grid">
+            <div class="card card-profile">
+                <div class="profile-header">
+                    <span class="label">Student Profile</span>
+                    <h2>ALYA BATRISYA</h2>
+                    <p>
+                        **Program:** Food Science 🔬<br>
+                        **Year:** Year 1
+                    </p>
+                    <p class="profile-tagline">
+                        "Innovating food safety."
+                    </p>
+                </div>
+                <div class="social-links">
+                    <h3>Quick Links</h3>
+                    <a href="#" target="_blank"><span class="icon">🔗</span>Linkedin</a>
+                    <a href="#" target="_blank"><span class="icon">💻</span>Github</a>
+                    <a href="#" target="_blank"><span class="icon">📚</span>UMT Portal</a>
+                </div>
+            </div>
+
+            <div class="card card-location">
+                <span class="label">Current Location</span>
+                <p style="font-size: 1.2rem; font-weight: 600;">
+                    <span class="icon">📍</span>UMT, Kuala Nerus
+                </p>
+                <p style="font-size: 0.9rem;">
+                    [Current Time Placeholder: e.g., 2:19 PM]
+                </p>
+            </div>
+
+            <div class="card card-hobby">
+                <span class="label">Leisure Activity</span>
+                <p style="font-size: 1.2rem; font-weight: 600;">
+                    <span class="icon">🚶‍♀️</span>Evening walks
+                </p>
+                <p style="font-size: 0.9rem;">
+                    @ Pantai UMT
+                </p>
+            </div>
+
+            <div class="card card-tech-stack">
+                <span class="label">Core Subjects (Sem 1)</span>
+                <h3>Relevant Courses</h3>
+                <ul>
+                    <li><span class="icon">⚗️</span>Biochemistry</li>
+                    <li><span class="icon">📐</span>Mathematics Engineering</li>
+                    <li><span class="icon">🌡️</span>Principle of Physical Chemistry</li>
+                    <li><span class="icon">🔬</span>Principle of Organic Chemistry</li>
+                </ul>
+            </div>
+
+            <div class="card card-case-study">
+                <span class="label">Recent Lab Work</span>
+                <h3>Starch Gelatinization in Local Kuih</h3>
+                <p>
+                    **Focus:** Analyzing texture profiles of *Kuih Lapis* using RVA (Rapid Visco Analyser) techniques.
+                </p>
+                <p style="margin-top: 1rem; color: var(--color-accent); font-weight: 500;">
+                    <span class="icon">📊</span>View Experiment Summary (Placeholder)
+                </p>
+            </div>
+
+            <div class="card card-playlist">
+                <span class="label">Study Soundtrack</span>
+                <h3>Chill Focus Beats</h3>
+                <p>
+                    <span class="icon">🎶</span>[Music Player Placeholder]
+                    <br>Currently listening to ambient/lofi playlists for maximum concentration.
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
